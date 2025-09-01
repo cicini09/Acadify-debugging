@@ -94,3 +94,4 @@ C:\Users\Christian Dave Vilan\Documents\School Files\FOURTH YEAR\Alliance\Studen
 C:\Users\Christian Dave Vilan\Documents\School Files\FOURTH YEAR\Alliance\Student-Performance-Tracker\obj\Debug\net9.0\Student-Performance-Tracker.pdb
 C:\Users\Christian Dave Vilan\Documents\School Files\FOURTH YEAR\Alliance\Student-Performance-Tracker\obj\Debug\net9.0\Student-Performance-Tracker.genruntimeconfig.cache
 C:\Users\Christian Dave Vilan\Documents\School Files\FOURTH YEAR\Alliance\Student-Performance-Tracker\obj\Debug\net9.0\ref\Student-Performance-Tracker.dll
+C:\Users\Christian Dave Vilan\Documents\School Files\FOURTH YEAR\Alliance\Student-Performance-Tracker\obj\Debug\net9.0\Student-Performance-Tracker.sourcelink.json
