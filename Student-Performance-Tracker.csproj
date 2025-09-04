@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>Student_Performance_Tracker</RootNamespace>
+    <UserSecretsId>e672d397-ccb4-4759-8ef8-3109c369b0db</UserSecretsId>
   </PropertyGroup>
 
 </Project>
