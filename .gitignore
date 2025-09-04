@@ -39,6 +39,9 @@ artifacts/
 .vscode/
 *.code-workspace
 
+# Cursor Editor
+.cursor/
+
 # JetBrains Rider
 .idea/
 *.sln.iml
