@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Student_Performance_Tracker.Models;
 
 [Table("grades")]
-public partial class Grade
-{
+[Index(nameof(EnrollmentId), IsUnique = true)]
+public partial class Grade{
     [Key]
     [Column("id")]
     public long Id { get; set; }

@@ -19,15 +19,6 @@ namespace Student_Performance_Tracker.Data
         public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // Read from appsettings.json in Program.cs
-                optionsBuilder.UseNpgsql("Name=ConnectionStrings:DefaultConnection");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // === Users ===

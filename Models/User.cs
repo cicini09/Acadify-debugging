@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Student_Performance_Tracker.Enums;
-
+using System.Text.Json.Serialization;
 namespace Student_Performance_Tracker.Models;
 
 [Table("users")]
@@ -21,8 +21,10 @@ public partial class User
 
     [Column("email")]
     [StringLength(255)]
+    [EmailAddress]
     public string Email { get; set; } = null!;
 
+    [JsonIgnore]
     [Column("password_hash")]
     public string PasswordHash { get; set; } = null!;
 
