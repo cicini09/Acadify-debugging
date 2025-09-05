@@ -7,7 +7,7 @@ namespace Student_Performance_Tracker.Models;
 
 [Table("grades")]
 [Index(nameof(EnrollmentId), IsUnique = true)]
-public partial class Grade{
+public partial class Grade {
     [Key]
     [Column("id")]
     public long Id { get; set; }
@@ -15,11 +15,11 @@ public partial class Grade{
     [Column("enrollment_id")]
     public long EnrollmentId { get; set; }
 
-    [Column("midterm")]
+    [Column("midterm_grade")]
     [Precision(5, 2)]
     public decimal? MidtermGrade { get; set; }
 
-    [Column("final")]
+    [Column("final_grade")]
     [Precision(5, 2)]
     public decimal? FinalGrade { get; set; }
 

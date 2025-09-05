@@ -32,7 +32,7 @@ public partial class Course
     public short Units { get; set; }
 
     [Column("created_by")]
-    public long? CreatedBy { get; set; }   // Admin or Teacher
+    public long? CreatedBy { get; set; }   // Admin or Teacher  
 
     [Column("created_at", TypeName = "timestamp without time zone")]
     public DateTime CreationDate { get; set; } = DateTime.Now;

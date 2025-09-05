@@ -22,13 +22,13 @@ public partial class Enrollment
     [Column("enrolled_at", TypeName = "timestamp without time zone")]
     public DateTime EnrollmentDate { get; set; } = DateTime.Now;
 
-    [ForeignKey("CourseId")]
-    [InverseProperty("Enrollments")]
-    public virtual Course Course { get; set; } = null!;
-
     [ForeignKey("StudentId")]
     [InverseProperty("Enrollments")]
     public virtual User Student { get; set; } = null!;
+
+    [ForeignKey("CourseId")]
+    [InverseProperty("Enrollments")]
+    public virtual Course Course { get; set; } = null!;
 
     // Navigation: link to Grade
     [InverseProperty("Enrollment")]

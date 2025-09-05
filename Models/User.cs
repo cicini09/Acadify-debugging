@@ -39,7 +39,6 @@ public partial class User
     public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
 
-
     // Navigation: A teacher can be assigned to courses
     [InverseProperty("AssignedTeacher")]
     public virtual ICollection<Course> CoursesTeaching { get; set; } = new List<Course>();
