@@ -16,7 +16,7 @@ public partial class Course
 
     [Column("course_name")]
     [StringLength(100)]
-    public string CourseName { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
     [Column("description")]
     public string? Description { get; set; }
@@ -35,16 +35,16 @@ public partial class Course
     public long? CreatedBy { get; set; }   // Admin or Teacher
 
     [Column("created_at", TypeName = "timestamp without time zone")]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 
     // Navigation: Teacher assigned to course
     [ForeignKey("TeacherId")]
     [InverseProperty("CoursesTeaching")]
-    public virtual User? Teacher { get; set; }
+    public virtual User? AssignedTeacher { get; set; }
 
     // Navigation: Creator (Admin or Teacher)
     [ForeignKey("CreatedBy")]
-    [InverseProperty("CoursesCreated")]
+    [InverseProperty("CreatedCourses")]
     public virtual User? Creator { get; set; }
 
     // Navigation: Students enrolled

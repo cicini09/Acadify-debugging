@@ -25,7 +25,7 @@ namespace Student_Performance_Tracker.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("users_pkey");
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
+                entity.Property(e => e.RegistrationDate).HasDefaultValueSql("now()");
                 entity.Property(e => e.Role).HasConversion<string>();
             });
 
@@ -33,16 +33,16 @@ namespace Student_Performance_Tracker.Data
             modelBuilder.Entity<Course>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("courses_pkey");
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
+                entity.Property(e => e.CreationDate).HasDefaultValueSql("now()");
 
-                entity.HasOne(d => d.Teacher)
+                entity.HasOne(d => d.AssignedTeacher)
                       .WithMany(p => p.CoursesTeaching)
                       .HasForeignKey(d => d.TeacherId)
                       .OnDelete(DeleteBehavior.SetNull)
                       .HasConstraintName("courses_teacher_id_fkey");
 
                 entity.HasOne(d => d.Creator)
-                      .WithMany(p => p.CoursesCreated)
+                      .WithMany(p => p.CreatedCourses)
                       .HasForeignKey(d => d.CreatedBy)
                       .OnDelete(DeleteBehavior.SetNull)
                       .HasConstraintName("courses_created_by_fkey");
@@ -52,7 +52,7 @@ namespace Student_Performance_Tracker.Data
             modelBuilder.Entity<Enrollment>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("enrollments_pkey");
-                entity.Property(e => e.EnrolledAt).HasDefaultValueSql("now()");
+                entity.Property(e => e.EnrollmentDate).HasDefaultValueSql("now()");
 
                 entity.HasOne(d => d.Course)
                       .WithMany(p => p.Enrollments)
@@ -71,7 +71,7 @@ namespace Student_Performance_Tracker.Data
             modelBuilder.Entity<Grade>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("grades_pkey");
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("now()");
+                entity.Property(e => e.CreationDate).HasDefaultValueSql("now()");
 
                 entity.HasOne(d => d.Enrollment)
                       .WithOne(p => p.Grade)

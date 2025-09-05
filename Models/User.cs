@@ -36,15 +36,17 @@ public partial class User
     public string? ProfilePicture { get; set; }
 
     [Column("created_at", TypeName = "timestamp without time zone")]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime RegistrationDate { get; set; } = DateTime.Now;
+
+
 
     // Navigation: A teacher can be assigned to courses
-    [InverseProperty("Teacher")]
+    [InverseProperty("AssignedTeacher")]
     public virtual ICollection<Course> CoursesTeaching { get; set; } = new List<Course>();
 
     // Navigation: A user (teacher/admin) can create courses
     [InverseProperty("Creator")]
-    public virtual ICollection<Course> CoursesCreated { get; set; } = new List<Course>();
+    public virtual ICollection<Course> CreatedCourses { get; set; } = new List<Course>();
 
     // Navigation: A student has enrollments
     [InverseProperty("Student")]

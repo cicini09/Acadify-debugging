@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -17,17 +17,17 @@ public partial class Grade{
 
     [Column("midterm")]
     [Precision(5, 2)]
-    public decimal? Midterm { get; set; }
+    public decimal? MidtermGrade { get; set; }
 
     [Column("final")]
     [Precision(5, 2)]
-    public decimal? Final { get; set; }
+    public decimal? FinalGrade { get; set; }
 
     [Column("remarks")]
     public string? Remarks { get; set; }
 
     [Column("created_at", TypeName = "timestamp without time zone")]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreationDate { get; set; } = DateTime.Now;
 
     [Column("updated_at", TypeName = "timestamp without time zone")]
     public DateTime? UpdatedAt { get; set; }

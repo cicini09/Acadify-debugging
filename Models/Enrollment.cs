@@ -20,7 +20,7 @@ public partial class Enrollment
     public long CourseId { get; set; }
 
     [Column("enrolled_at", TypeName = "timestamp without time zone")]
-    public DateTime EnrolledAt { get; set; } = DateTime.Now;
+    public DateTime EnrollmentDate { get; set; } = DateTime.Now;
 
     [ForeignKey("CourseId")]
     [InverseProperty("Enrollments")]
