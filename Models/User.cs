@@ -9,7 +9,7 @@ namespace Student_Performance_Tracker.Models;
 
 [Table("users")]
 [Index("Email", Name = "users_email_key", IsUnique = true)]
-public partial class User
+public class User
 {
     [Key]
     [Column("id")]

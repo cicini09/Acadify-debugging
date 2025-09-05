@@ -8,7 +8,7 @@ namespace Student_Performance_Tracker.Models;
 
 [Table("courses")]
 [Index("JoinCode", Name = "courses_join_code_key", IsUnique = true)]
-public partial class Course
+public class Course
 {
     [Key]
     [Column("id")]

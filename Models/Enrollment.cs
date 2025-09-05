@@ -7,7 +7,7 @@ namespace Student_Performance_Tracker.Models;
 
 [Table("enrollments")]
 [Index("StudentId", "CourseId", Name = "enrollments_student_id_course_id_key", IsUnique = true)]
-public partial class Enrollment
+public class Enrollment
 {
     [Key]
     [Column("id")]

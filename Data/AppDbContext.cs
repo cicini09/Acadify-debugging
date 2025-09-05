@@ -3,7 +3,7 @@ using Student_Performance_Tracker.Models;
 
 namespace Student_Performance_Tracker.Data
 {
-    public partial class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext()
         {
