@@ -15,6 +15,7 @@ public partial class Course
     public long Id { get; set; }
 
     [Column("course_name")]
+    [Required]
     [StringLength(100)]
     public string Name { get; set; } = null!;
 
@@ -25,6 +26,7 @@ public partial class Course
     public long? TeacherId { get; set; }   // nullable because of ON DELETE SET NULL
 
     [Column("join_code")]
+    [Required]
     [StringLength(10)]
     public string JoinCode { get; set; } = null!;
 

@@ -16,19 +16,24 @@ public partial class User
     public long Id { get; set; }
 
     [Column("name")]
+    [Required]
     [StringLength(100)]
     public string Name { get; set; } = null!;
 
     [Column("email")]
+    [Required]
     [StringLength(255)]
     [EmailAddress]
     public string Email { get; set; } = null!;
 
     [JsonIgnore]
+    [Required]
+    [StringLength(255)]
     [Column("password_hash")]
     public string PasswordHash { get; set; } = null!;
 
     [Column("role")]
+    [Range(1, 3, ErrorMessage = "A valid role must be selected.")]
     public Role Role { get; set; }
 
     [Column("profile_picture")]
