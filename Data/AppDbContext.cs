@@ -79,10 +79,6 @@ namespace Student_Performance_Tracker.Data
                       .OnDelete(DeleteBehavior.Cascade)
                       .HasConstraintName("grades_enrollment_id_fkey");
             });
-
-            OnModelCreatingPartial(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

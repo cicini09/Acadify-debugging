@@ -15,8 +15,8 @@ public class Course
     public long Id { get; set; }
 
     [Column("course_name")]
-    [Required]
-    [StringLength(100)]
+    [Required(ErrorMessage = "Course name is required")]
+    [StringLength(100, ErrorMessage = "Course name cannot exceed 100 characters")]
     public string Name { get; set; } = null!;
 
     [Column("description")]
@@ -26,8 +26,8 @@ public class Course
     public long? TeacherId { get; set; }   // nullable because of ON DELETE SET NULL
 
     [Column("join_code")]
-    [Required]
-    [StringLength(10)]
+    [Required(ErrorMessage = "Join code is required")]
+    [StringLength(10, ErrorMessage = "Join code cannot exceed 10 characters")]
     public string JoinCode { get; set; } = null!;
 
     [Column("units")]

@@ -16,19 +16,19 @@ public class User
     public long Id { get; set; }
 
     [Column("name")]
-    [Required]
-    [StringLength(100)]
+    [Required(ErrorMessage = "Name is required")]
+    [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters")]
     public string Name { get; set; } = null!;
 
     [Column("email")]
-    [Required]
-    [StringLength(255)]
-    [EmailAddress]
+    [Required(ErrorMessage = "Email address is required")]
+    [StringLength(255, ErrorMessage = "Email address cannot exceed 255 characters")]
+    [EmailAddress(ErrorMessage = "Please enter a valid email address")]
     public string Email { get; set; } = null!;
 
     [JsonIgnore]
-    [Required]
-    [StringLength(255)]
+    [Required(ErrorMessage = "Password is required")]
+    [StringLength(255, ErrorMessage = "Password cannot exceed 255 characters")]
     [Column("password_hash")]
     public string PasswordHash { get; set; } = null!;
 
@@ -37,7 +37,7 @@ public class User
     public Role Role { get; set; }
 
     [Column("profile_picture")]
-    [StringLength(255)]
+    [StringLength(255, ErrorMessage = "Profile picture URL cannot exceed 255 characters")]
     public string? ProfilePicture { get; set; }
 
     [Column("created_at", TypeName = "timestamp without time zone")]

@@ -14,11 +14,11 @@ public class Enrollment
     public long Id { get; set; }
 
     [Column("student_id")]
-    [Required]
+    [Required(ErrorMessage = "Student ID is required")]
     public long StudentId { get; set; }
 
     [Column("course_id")]
-    [Required]
+    [Required(ErrorMessage = "Course ID is required")]
     public long CourseId { get; set; }
 
     [Column("enrolled_at", TypeName = "timestamp without time zone")]
