@@ -1,10 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Student_Performance_Tracker.Data;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Student_Performance_Tracker.Validators.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterUserValidator>();
 
 // Add DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
