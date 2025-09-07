@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-using Student_Performance_Tracker.Enums;
-using System.Text.Json.Serialization;
+﻿using Student_Performance_Tracker.Enums;
 namespace Student_Performance_Tracker.Models;
 
 public class User
