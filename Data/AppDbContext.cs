@@ -35,16 +35,18 @@ namespace Student_Performance_Tracker.Data
                 entity.HasKey(e => e.Id).HasName("courses_pkey");
                 entity.Property(e => e.CreationDate).HasDefaultValueSql("now()");
 
+                // Teacher relationship: Course.AssignedTeacher → User.CoursesTeaching
                 entity.HasOne(d => d.AssignedTeacher)
                       .WithMany(p => p.CoursesTeaching)
                       .HasForeignKey(d => d.TeacherId)
-                      .OnDelete(DeleteBehavior.SetNull)
+                      .OnDelete(DeleteBehavior.Restrict) // Restrictive delete - prevent deletion if teacher has courses
                       .HasConstraintName("courses_teacher_id_fkey");
 
+                // Creator relationship: Course.Creator → User.CreatedCourses  
                 entity.HasOne(d => d.Creator)
                       .WithMany(p => p.CreatedCourses)
                       .HasForeignKey(d => d.CreatedBy)
-                      .OnDelete(DeleteBehavior.SetNull)
+                      .OnDelete(DeleteBehavior.Restrict) // Restrictive delete - prevent deletion if user created courses
                       .HasConstraintName("courses_created_by_fkey");
             });
 
@@ -54,16 +56,18 @@ namespace Student_Performance_Tracker.Data
                 entity.HasKey(e => e.Id).HasName("enrollments_pkey");
                 entity.Property(e => e.EnrollmentDate).HasDefaultValueSql("now()");
 
+                // Course relationship: Enrollment.Course → Course.Enrollments
                 entity.HasOne(d => d.Course)
                       .WithMany(p => p.Enrollments)
                       .HasForeignKey(d => d.CourseId)
-                      .OnDelete(DeleteBehavior.Cascade)
+                      .OnDelete(DeleteBehavior.Cascade) // Cascade delete - if course is deleted, delete enrollments
                       .HasConstraintName("enrollments_course_id_fkey");
 
+                // Student relationship: Enrollment.Student → User.Enrollments
                 entity.HasOne(d => d.Student)
                       .WithMany(p => p.Enrollments)
                       .HasForeignKey(d => d.StudentId)
-                      .OnDelete(DeleteBehavior.Cascade)
+                      .OnDelete(DeleteBehavior.Cascade) // Cascade delete - if student is deleted, delete enrollments
                       .HasConstraintName("enrollments_student_id_fkey");
             });
 

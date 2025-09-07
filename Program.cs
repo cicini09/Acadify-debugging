@@ -3,11 +3,18 @@ using Student_Performance_Tracker.Data;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Student_Performance_Tracker.Validators.Users;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        // Handle circular references in JSON serialization
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.WriteIndented = true; // Pretty print for development
+    });
 
 // Add FluentValidation
 builder.Services.AddFluentValidationAutoValidation();

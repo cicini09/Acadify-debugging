@@ -42,11 +42,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("role")
             .HasColumnType("varchar(20)");
 
-
         builder.Property(u => u.ProfilePicture)
-            .HasMaxLength(255)
+            .HasMaxLength(2048)
             .HasColumnName("profile_picture")
-            .HasColumnType("varchar(255)");
+            .HasColumnType("text");
 
         builder.Property(u => u.RegistrationDate)
             .HasColumnName("created_at")
