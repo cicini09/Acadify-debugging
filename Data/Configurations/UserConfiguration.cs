@@ -32,9 +32,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.PasswordHash)
             .IsRequired()
-            .HasMaxLength(255)
             .HasColumnName("password_hash")
-            .HasColumnType("varchar(255)");
+            .HasColumnType("text");
 
         builder.Property(u => u.Role)
             .IsRequired()
