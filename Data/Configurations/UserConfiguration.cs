@@ -14,28 +14,44 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsUnique()
             .HasDatabaseName("users_email_key");
 
+        builder.Property(u => u.Id)
+            .HasColumnName("id")
+            .HasColumnType("bigint");
+
         builder.Property(u => u.Name)
             .IsRequired()
-            .HasMaxLength(100);
+            .HasMaxLength(100)
+            .HasColumnName("name")
+            .HasColumnType("varchar(100)");
 
         builder.Property(u => u.Email)
             .IsRequired()
-            .HasMaxLength(255);
+            .HasMaxLength(255)
+            .HasColumnName("email")
+            .HasColumnType("varchar(255)");
 
         builder.Property(u => u.PasswordHash)
             .IsRequired()
             .HasMaxLength(255)
-            .HasColumnName("password_hash");
+            .HasColumnName("password_hash")
+            .HasColumnType("varchar(255)");
 
         builder.Property(u => u.Role)
             .IsRequired()
-            .HasConversion<int>(); // store enum as int
+            .HasConversion<string>()   // store enum as string
+            .HasColumnName("role")
+            .HasColumnType("varchar(20)");
+
 
         builder.Property(u => u.ProfilePicture)
-            .HasMaxLength(255);
+            .HasMaxLength(255)
+            .HasColumnName("profile_picture")
+            .HasColumnType("varchar(255)");
 
         builder.Property(u => u.RegistrationDate)
+            .HasColumnName("created_at")
             .HasColumnType("timestamp without time zone")
             .HasDefaultValueSql("NOW()");
     }
 }
+
