@@ -50,6 +50,24 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("created_at")
             .HasColumnType("timestamp without time zone")
             .HasDefaultValueSql("NOW()");
+
+        // Navigation: A teacher can be assigned to courses  
+        builder.HasMany(u => u.CoursesTeaching)
+            .WithOne(c => c.AssignedTeacher)
+            .HasForeignKey(c => c.TeacherId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Navigation: A user (teacher/admin) can create courses
+        builder.HasMany(u => u.CreatedCourses)
+            .WithOne(c => c.Creator)
+            .HasForeignKey(c => c.CreatedBy)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Navigation: A student has enrollments
+        builder.HasMany(u => u.Enrollments)
+            .WithOne(e => e.Student)
+            .HasForeignKey(e => e.StudentId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
 
