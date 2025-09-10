@@ -3,7 +3,7 @@ using Student_Performance_Tracker.Enums;
 
 namespace Student_Performance_Tracker.Models
 {
-    public class User : IdentityUser<long>
+    public class User : IdentityUser<int>
     {
         public string Name { get; set; } = null!;
         public Role Role { get; set; } = Role.None;

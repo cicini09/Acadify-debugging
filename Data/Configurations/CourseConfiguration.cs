@@ -11,6 +11,10 @@ namespace Student_Performance_Tracker.Data.Configurations
             builder.ToTable("courses");
 
             builder.HasKey(c => c.Id);
+
+            builder.HasIndex(c => c.JoinCode)
+                .IsUnique();
+
             builder.Property(c => c.Id)
                 .HasColumnName("id")
                 .UseIdentityColumn();
@@ -31,9 +35,6 @@ namespace Student_Performance_Tracker.Data.Configurations
                 .HasColumnName("join_code")
                 .HasColumnType("VARCHAR(10)")
                 .IsRequired();
-
-            builder.HasIndex(c => c.JoinCode)
-                .IsUnique();
 
             builder.Property(c => c.Units)
                 .HasColumnName("units")

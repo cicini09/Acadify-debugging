@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Student_Performance_Tracker.Data;
@@ -11,9 +12,11 @@ using Student_Performance_Tracker.Data;
 namespace Student_Performance_Tracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250909233601_AddDefaultValuetoUpdatedAtForGrade")]
+    partial class AddDefaultValuetoUpdatedAtForGrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,13 +25,13 @@ namespace Student_Performance_Tracker.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<long>", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -48,28 +51,28 @@ namespace Student_Performance_Tracker.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("integer");
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("user_roles", (string)null);
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text");
@@ -82,17 +85,17 @@ namespace Student_Performance_Tracker.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("user_tokens", (string)null);
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Student_Performance_Tracker.Models.Course", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("CourseName")
                         .IsRequired()
@@ -105,8 +108,8 @@ namespace Student_Performance_Tracker.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("integer")
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint")
                         .HasColumnName("created_by");
 
                     b.Property<string>("Description")
@@ -118,8 +121,8 @@ namespace Student_Performance_Tracker.Migrations
                         .HasColumnType("VARCHAR(10)")
                         .HasColumnName("join_code");
 
-                    b.Property<int?>("TeacherId")
-                        .HasColumnType("integer")
+                    b.Property<long?>("TeacherId")
+                        .HasColumnType("bigint")
                         .HasColumnName("teacher_id");
 
                     b.Property<short>("Units")
@@ -140,15 +143,15 @@ namespace Student_Performance_Tracker.Migrations
 
             modelBuilder.Entity("Student_Performance_Tracker.Models.Enrollment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("CourseId")
-                        .HasColumnType("integer")
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint")
                         .HasColumnName("course_id");
 
                     b.Property<DateTime>("EnrolledAt")
@@ -157,8 +160,8 @@ namespace Student_Performance_Tracker.Migrations
                         .HasColumnName("enrolled_at")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("integer")
+                    b.Property<long>("StudentId")
+                        .HasColumnType("bigint")
                         .HasColumnName("student_id");
 
                     b.HasKey("Id");
@@ -173,12 +176,12 @@ namespace Student_Performance_Tracker.Migrations
 
             modelBuilder.Entity("Student_Performance_Tracker.Models.Grade", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -186,8 +189,8 @@ namespace Student_Performance_Tracker.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<int>("EnrollmentId")
-                        .HasColumnType("integer")
+                    b.Property<long>("EnrollmentId")
+                        .HasColumnType("bigint")
                         .HasColumnName("enrollment_id");
 
                     b.Property<decimal?>("FinalGrade")
@@ -218,12 +221,12 @@ namespace Student_Performance_Tracker.Migrations
 
             modelBuilder.Entity("Student_Performance_Tracker.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer")
@@ -321,9 +324,9 @@ namespace Student_Performance_Tracker.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<long>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<long>", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,7 +339,7 @@ namespace Student_Performance_Tracker.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<long>", b =>
                 {
                     b.HasOne("Student_Performance_Tracker.Models.User", null)
                         .WithMany()

@@ -11,6 +11,10 @@ namespace Student_Performance_Tracker.Data.Configurations
             builder.ToTable("enrollments");
 
             builder.HasKey(e => e.Id);
+
+            builder.HasIndex(e => new { e.StudentId, e.CourseId })
+                .IsUnique();
+
             builder.Property(e => e.Id)
                 .HasColumnName("id")
                 .UseIdentityColumn();
@@ -27,10 +31,7 @@ namespace Student_Performance_Tracker.Data.Configurations
                 .HasColumnName("enrolled_at")
                 .HasColumnType("TIMESTAMP")
                 .HasDefaultValueSql("NOW()");
-
-            // Composite unique constraint
-            builder.HasIndex(e => new { e.StudentId, e.CourseId })
-                .IsUnique();
+            
 
             // Relationships
             builder.HasOne(e => e.Student)

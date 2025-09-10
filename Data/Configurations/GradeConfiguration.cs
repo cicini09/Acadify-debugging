@@ -41,7 +41,8 @@ namespace Student_Performance_Tracker.Data.Configurations
 
             builder.Property(g => g.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("TIMESTAMP");
+                .HasColumnType("TIMESTAMP")
+                .HasDefaultValueSql("NOW()");
 
             // One-to-one with Enrollment
             builder.HasOne(g => g.Enrollment)

@@ -2,13 +2,13 @@
 {
     public class Course
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string CourseName { get; set; } = null!;
         public string? Description { get; set; }
-        public long? TeacherId { get; set; }
+        public int? TeacherId { get; set; }
         public string JoinCode { get; set; } = null!;
         public short Units { get; set; }
-        public long? CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
