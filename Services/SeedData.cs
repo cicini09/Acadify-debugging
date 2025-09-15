@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using Student_Performance_Tracker.Enums;
 
 namespace Student_Performance_Tracker.Services
 {
@@ -10,7 +9,7 @@ namespace Student_Performance_Tracker.Services
             public const string Admin = "Admin";
             public const string Teacher = "Teacher";
             public const string Student = "Student";
-
+            
             public static readonly string[] AllRoles = { Admin, Teacher, Student };
 
             public static IdentityRole<int>[] GetRoleEntities()

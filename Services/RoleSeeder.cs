@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Student_Performance_Tracker.Data;
-using Student_Performance_Tracker.Enums;
 
 namespace Student_Performance_Tracker.Services
 {

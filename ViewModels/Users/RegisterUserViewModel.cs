@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Student_Performance_Tracker.Enums;
 
 namespace Student_Performance_Tracker.ViewModels.Users;
 
@@ -19,5 +18,5 @@ public class RegisterUserViewModel
     public string Password { get; set; } = null!;
 
     [Required(ErrorMessage = "Role is required")]
-    public Role Role { get; set; }
+    public string Role { get; set; } = null!;
 }

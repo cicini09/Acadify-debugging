@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Student_Performance_Tracker.Models;
-using Student_Performance_Tracker.Enums;
 
 namespace Student_Performance_Tracker.Data.Configurations
 {
@@ -10,10 +8,7 @@ namespace Student_Performance_Tracker.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("users", t =>
-            {
-                t.HasCheckConstraint("CK_users_role", "role IN ('Admin', 'Teacher', 'Student')");
-            });
+            builder.ToTable("users");
 
             builder.Property(u => u.Id).HasColumnName("id");
             builder.Property(u => u.Email).HasColumnName("email");
@@ -22,14 +17,6 @@ namespace Student_Performance_Tracker.Data.Configurations
             builder.Property(u => u.Name)
                 .HasColumnName("name")
                 .HasColumnType("VARCHAR(100)")
-                .IsRequired();
-
-            builder.Property(u => u.Role)
-                .HasColumnName("role")
-                .HasColumnType("VARCHAR(20)")
-                .HasConversion(
-                    v => v.ToString(),  
-                    v => (Role)Enum.Parse(typeof(Role), v))  
                 .IsRequired();
 
             builder.Property(u => u.ProfilePicture)
