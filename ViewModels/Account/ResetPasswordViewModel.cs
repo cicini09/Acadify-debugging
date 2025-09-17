@@ -1,0 +1,21 @@
+using System.ComponentModel.DataAnnotations;
+
+public class ResetPasswordViewModel
+{
+    [Required(ErrorMessage = "Email address is required")]
+    [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+    public string Email { get; set; } = null!;
+
+    [Required(ErrorMessage = "Token is required")]
+    public string Token { get; set; } = null!;
+
+    [Required(ErrorMessage = "Password is required")]
+    [StringLength(255, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters")]
+    [DataType(DataType.Password)]
+    public string Password { get; set; } = null!;
+
+    [Required(ErrorMessage = "Confirm Password is required")]
+    [DataType(DataType.Password)]
+    [Compare("Password", ErrorMessage = "Passwords do not match")]
+    public string ConfirmPassword { get; set; } = null!;
+}
