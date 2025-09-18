@@ -102,4 +102,21 @@ public class AccountService : IAccountService
         }
     }
 
+    public async Task<AuthResult> ResetPasswordAsync(string email, string token, string newPassword)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return AuthResult.Failure(new[] { "Invalid password reset request" });
+        }
+
+        var result = await _userManager.ResetPasswordAsync(user, token, newPassword);
+
+        if (result.Succeeded)
+        {
+            return AuthResult.Success();
+        }
+
+        return AuthResult.Failure(result.Errors.Select(e => e.Description));
+    }
 }

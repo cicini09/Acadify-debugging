@@ -8,16 +8,18 @@ namespace Student_Performance_Tracker.Controllers;
 public class AccountController : Controller
 {
     private readonly IAccountService _accountService;
+
+
     public AccountController(IAccountService accountService)
     {
         _accountService = accountService;
     }
 
-    // GET: /Auth/Register
+    // GET: /Account/Register
     [HttpGet]
     public ViewResult Register() => View();
 
-    // GET: /Auth/Login
+    // GET: /Account/Login
     [HttpGet]
     public ViewResult Login(string? returnUrl = null)
     {
@@ -25,11 +27,11 @@ public class AccountController : Controller
         return View();
     }
 
-    // GET: /Auth/ForgotPassword
+    // GET: /Account/ForgotPassword
     [HttpGet]
     public ViewResult ForgotPassword() => View();
 
-    // GET: /Auth/ResetPassword
+    // GET: /Account/ResetPassword
     [HttpGet]
     public IActionResult ResetPassword(string email, string token)
     {
@@ -42,7 +44,10 @@ public class AccountController : Controller
         return View(model);
     }
 
-    // POST: /Auth/Register
+
+
+
+    // POST: /Account/Register
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
@@ -68,7 +73,7 @@ public class AccountController : Controller
         return View(model);
     }
 
-    // POST: /Auth/Login
+    // POST: /Account/Login
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
@@ -100,7 +105,8 @@ public class AccountController : Controller
         return ViewWithReturnUrl(model, returnUrl);
     }
 
-    // TO-DO: Forgot Password End Point 
+    // POST: /Account/ForgotPassword
+    [HttpPost] 
     public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
     {
         if (!ModelState.IsValid)
@@ -118,7 +124,31 @@ public class AccountController : Controller
         return View("ForgotPasswordConfirmation");
     }
 
-    // TO-DO: Reset Password End Point
+    // POST: /Account/ResetPassword
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ResetPasswordAsync(ResetPasswordViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var result = await _accountService.ResetPasswordAsync(model.Email, model.Token, model.Password);
+
+        if (result.Succeeded)
+        {
+            ViewBag.Message = "Your password has been reset successfully. You can now log in with your new password";
+            return View("ResetPasswordConfirmation");
+        }
+
+        foreach (var error in result.Errors)
+        {
+            ModelState.AddModelError("", error);
+        }
+
+        return View(model);
+    }
 
     // POST: /Auth/Logout
     [HttpPost]
@@ -129,6 +159,8 @@ public class AccountController : Controller
         await _accountService.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
+
+
 
     // Helper Methods
     private ViewResult ViewWithReturnUrl<T>(T model, string? returnUrl)
