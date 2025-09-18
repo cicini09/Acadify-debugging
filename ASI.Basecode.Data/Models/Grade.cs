@@ -1,4 +1,4 @@
-﻿namespace Student_Performance_Tracker.Models
+﻿namespace ASI.Basecode.Data.Models
 {
     public class Grade
     {

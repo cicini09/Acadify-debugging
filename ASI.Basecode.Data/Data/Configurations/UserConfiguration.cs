@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Student_Performance_Tracker.Models;
+using ASI.Basecode.Data.Models;
 
-namespace Student_Performance_Tracker.Data.Configurations
+namespace ASI.Basecode.Data.Data.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

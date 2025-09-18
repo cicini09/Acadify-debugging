@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Student_Performance_Tracker.Data;
+using ASI.Basecode.Data.Data;
 using Student_Performance_Tracker.Services;
 using FluentValidation.AspNetCore;
-using Student_Performance_Tracker.Models;
+using ASI.Basecode.Data.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);

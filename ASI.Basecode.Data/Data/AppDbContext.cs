@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Student_Performance_Tracker.Models;
-using Student_Performance_Tracker.Data.Configurations;
+using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Data.Configurations;
 
-namespace Student_Performance_Tracker.Data
+namespace ASI.Basecode.Data.Data
 {
     public class AppDbContext : IdentityDbContext<User, IdentityRole<int>, int>
     {

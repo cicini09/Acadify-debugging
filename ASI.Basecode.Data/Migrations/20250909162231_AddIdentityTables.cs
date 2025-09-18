@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Student_Performance_Tracker.Migrations
+namespace ASI.Basecode.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddIdentityTables : Migration

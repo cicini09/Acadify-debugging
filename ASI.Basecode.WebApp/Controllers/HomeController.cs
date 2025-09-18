@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Student_Performance_Tracker.Models;
+using ASI.Basecode.Data.Models;
 
 namespace Student_Performance_Tracker.Controllers;
 

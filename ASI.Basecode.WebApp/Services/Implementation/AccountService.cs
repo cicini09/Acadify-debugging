@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using Student_Performance_Tracker.Models;
+using ASI.Basecode.Data.Models;
 using Student_Performance_Tracker.ViewModels.Account;
 
 namespace Student_Performance_Tracker.Services;

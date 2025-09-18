@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Student_Performance_Tracker.Migrations
+namespace ASI.Basecode.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddDefaultValuetoUpdatedAt : Migration

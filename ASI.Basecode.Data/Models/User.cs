@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Student_Performance_Tracker.Models
+namespace ASI.Basecode.Data.Models
 {
     public class User : IdentityUser<int>
     {
