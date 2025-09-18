@@ -1,4 +1,4 @@
-using Student_Performance_Tracker.ViewModels.Users;
+using Student_Performance_Tracker.ViewModels.Account;
 
 public interface IAccountService
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Student_Performance_Tracker.Models;
-using Student_Performance_Tracker.ViewModels.Users;
+using Student_Performance_Tracker.ViewModels.Account;
 
 namespace Student_Performance_Tracker.Services;
 

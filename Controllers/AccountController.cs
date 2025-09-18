@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Student_Performance_Tracker.ViewModels.Users;
+using Student_Performance_Tracker.ViewModels.Account;
 
 namespace Student_Performance_Tracker.Controllers;
 

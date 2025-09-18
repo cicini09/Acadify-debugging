@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace Student_Performance_Tracker.ViewModels.Account;
+
 public class ResetPasswordViewModel
 {
     [Required(ErrorMessage = "Email address is required")]

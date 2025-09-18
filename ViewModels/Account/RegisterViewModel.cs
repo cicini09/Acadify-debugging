@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Student_Performance_Tracker.ViewModels.Users;
+namespace Student_Performance_Tracker.ViewModels.Account;
 
 public class RegisterViewModel
 {
