@@ -86,24 +86,18 @@ public class AccountService : IAccountService
         try
         {
             var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
+            if (!(user == null))
             {
-                // For security, don't reveal if user exists or not
-                // Always return success to prevent email enumeration attacks
-                return ForgotPasswordResult.Success();
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                await _emailService.SendPasswordResetEmailAsync(user.Email!, user.Name, token);
             }
 
-            // Generate password reset token
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            
-            // Send email with reset link
-            await _emailService.SendPasswordResetEmailAsync(user.Email!, user.Name, token);
-
+            // For security, don't reveal if user exists or not
+            // Always return success to prevent email enumeration attacks
             return ForgotPasswordResult.Success();
         }
         catch (Exception)
         {
-            // Don't expose internal details to user
             return ForgotPasswordResult.EmailFailed("Failed to send password reset email. Please try again later.");
         }
     }
