@@ -5,6 +5,7 @@ using ASI.Basecode.Data.Repositories;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.DTOs;
 using ASI.Basecode.Services.Results;
+using ASI.Basecode.Resources.Messages;
 
 public class AccountService : IAccountService
 {
@@ -43,7 +44,7 @@ public class AccountService : IAccountService
         var user = await _userRepository.FindByEmailAsync(request.Email);
         if (user == null)
         {
-            return SignInAuthResult.Failed("Invalid login attempt.");
+            return SignInAuthResult.Failed(AccountMessages.InvalidLoginAttempt);
         }
 
         var (succeeded, isLockedOut) = await _authRepository.PasswordSignInAsync(
@@ -62,7 +63,7 @@ public class AccountService : IAccountService
             return SignInAuthResult.LockedOut();
         }
 
-        return SignInAuthResult.Failed("Invalid login attempt.");
+        return SignInAuthResult.Failed(AccountMessages.InvalidLoginAttempt);
     }
 
     public async Task SignOutAsync()
@@ -86,7 +87,7 @@ public class AccountService : IAccountService
         try
         {
             var user = await _userRepository.FindByEmailAsync(email);
-            if (!(user == null))
+            if (user != null)
             {
                 var token = await _userRepository.GeneratePasswordResetTokenAsync(user);
                 await _emailService.SendPasswordResetEmailAsync(user.Email!, user.Name, token);
@@ -96,7 +97,7 @@ public class AccountService : IAccountService
         }
         catch (Exception)
         {
-            return ForgotPasswordResult.EmailFailed("Failed to send password reset email. Please try again later.");
+            return ForgotPasswordResult.EmailFailed(AccountMessages.PasswordResetFailed);
         }
     }
 
@@ -105,7 +106,7 @@ public class AccountService : IAccountService
         var user = await _userRepository.FindByEmailAsync(email);
         if (user == null)
         {
-            return AuthResult.Failure(new[] { "Invalid password reset request" });
+            return AuthResult.Failure(new[] { AccountMessages.InvalidPasswordResetRequest });
         }
 
         var (succeeded, errors) = await _userRepository.ResetPasswordAsync(user, token, newPassword);
@@ -115,6 +116,25 @@ public class AccountService : IAccountService
         }
 
         return AuthResult.Failure(errors);
+    }
+
+    public async Task<string> GetRedirectPathBasedOnRoleAsync(string email)
+    {
+        var user = await _userRepository.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return "/Home"; // Default redirect if user not found
+        }
+
+        var roles = await _userRepository.GetRolesAsync(user);
+        
+        return roles.FirstOrDefault() switch
+        {
+            "Admin" => "/Admin",
+            "Teacher" => "/Teacher", 
+            "Student" => "/Student",
+            _ => "/Home"
+        };
     }
 }
 

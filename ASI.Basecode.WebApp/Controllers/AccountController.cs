@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Student_Performance_Tracker.ViewModels.Account;
 using ASI.Basecode.Services.Interfaces;
 using ASI.Basecode.Services.DTOs;
+using ASI.Basecode.Resources.Messages;
+using System.Linq;
 
 namespace Student_Performance_Tracker.Controllers;
 
@@ -110,11 +112,11 @@ public class AccountController : Controller
 
         if (result.IsLockedOut)
         {
-            ModelState.AddModelError("", "This account has been locked due to multiple failed login attempts. Please try again in 15 minutes.");
+            ModelState.AddModelError("", AccountMessages.AccountLockedOut);
             return ViewWithReturnUrl(model, returnUrl);
         }
 
-        ModelState.AddModelError("", result.ErrorMessage ?? "Invalid login attempt.");
+        ModelState.AddModelError("", result.ErrorMessage ?? AccountMessages.InvalidLoginAttempt);
         return ViewWithReturnUrl(model, returnUrl);
     }
 
@@ -131,7 +133,7 @@ public class AccountController : Controller
 
         // Always show success message for security (prevents email enumeration attacks)
         // Even if the email doesn't exist, we show the same message
-        ViewBag.Message = "If an account with that email exists, a password reset link has been sent to your email address.";
+        ViewBag.Message = AccountMessages.PasswordResetEmailSent;
         ViewBag.Email = model.Email; // Optional: to show which email was used
 
         return View("ForgotPasswordConfirmation");
@@ -151,7 +153,7 @@ public class AccountController : Controller
 
         if (result.Succeeded)
         {
-            ViewBag.Message = "Your password has been reset successfully. You can now log in with your new password";
+            ViewBag.Message = AccountMessages.PasswordResetSuccessful;
             return View("ResetPasswordConfirmation");
         }
 
@@ -184,14 +186,7 @@ public class AccountController : Controller
 
     private async Task<IActionResult> RedirectBasedOnRoleAsync(string email)
     {
-        var roles = await _accountService.GetUserRolesAsync(email);
-        
-        return roles.FirstOrDefault() switch
-        {
-            "Admin" => RedirectToAction("Index", "Admin"),
-            "Teacher" => RedirectToAction("Index", "Teacher"),
-            "Student" => RedirectToAction("Index", "Student"),
-            _ => RedirectToAction("Index", "Home")
-        };
+        var redirectPath = await _accountService.GetRedirectPathBasedOnRoleAsync(email);
+        return Redirect(redirectPath);
     }
 }

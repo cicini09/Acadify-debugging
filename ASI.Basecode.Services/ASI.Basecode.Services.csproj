@@ -14,4 +14,8 @@
     <ProjectReference Include="..\ASI.Basecode.Data\ASI.Basecode.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASI.Basecode.Resources\ASI.Basecode.Resources.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -26,4 +26,8 @@
   <ProjectReference Include="..\\ASI.Basecode.Services\\ASI.Basecode.Services.csproj" />
 </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASI.Basecode.Resources\ASI.Basecode.Resources.csproj" />
+  </ItemGroup>
+
 </Project>
