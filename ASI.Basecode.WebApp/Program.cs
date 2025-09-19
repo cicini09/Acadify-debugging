@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ASI.Basecode.Data.Data;
-using Student_Performance_Tracker.Services;
-using FluentValidation.AspNetCore;
 using ASI.Basecode.Data.Models;
+using ASI.Basecode.Data.Repositories;
+using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.Implementation;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,9 +17,6 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.WriteIndented = true; // Pretty print for development
     });
-
-// Add FluentValidation
-builder.Services.AddFluentValidationAutoValidation();
 
 
 // Add DbContext
@@ -49,9 +47,13 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 .AddDefaultTokenProviders();
 
 
-// For IAuthService
+// Services
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddHttpClient<IEmailService, SendGridEmailService>();
+
+// Repositories (Data layer)
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();
 

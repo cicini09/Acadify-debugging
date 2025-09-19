@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Student_Performance_Tracker.ViewModels.Account;
+using ASI.Basecode.Services.Interfaces;
+using ASI.Basecode.Services.DTOs;
 
 namespace Student_Performance_Tracker.Controllers;
 
@@ -57,7 +59,13 @@ public class AccountController : Controller
             return View(model);
         }
 
-        var result = await _accountService.RegisterAsync(model);
+        var result = await _accountService.RegisterAsync(new RegisterRequest
+        {
+            Name = model.Name,
+            Email = model.Email,
+            Password = model.Password,
+            Role = model.Role
+        });
 
         if (result.Succeeded)
         {
@@ -83,7 +91,12 @@ public class AccountController : Controller
             return ViewWithReturnUrl(model, returnUrl);
         }
 
-        var result = await _accountService.LoginAsync(model);
+        var result = await _accountService.LoginAsync(new LoginRequest
+        {
+            Email = model.Email,
+            Password = model.Password,
+            RememberMe = model.RememberMe
+        });
 
         if (result.Succeeded)
         {
