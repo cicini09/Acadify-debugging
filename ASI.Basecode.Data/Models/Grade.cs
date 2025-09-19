@@ -1,4 +1,6 @@
-﻿namespace ASI.Basecode.Data.Models
+﻿using System;
+
+namespace ASI.Basecode.Data.Models
 {
     public class Grade
     {

@@ -1,4 +1,7 @@
-﻿namespace ASI.Basecode.Data.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace ASI.Basecode.Data.Models
 {
     public class Course
     {
