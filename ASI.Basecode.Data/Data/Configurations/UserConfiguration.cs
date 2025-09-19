@@ -17,11 +17,15 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(u => u.Name)
                 .HasColumnName("name")
                 .HasColumnType("VARCHAR(100)")
-                .IsRequired();
+                .IsRequired();  
 
             builder.Property(u => u.ProfilePicture)
                 .HasColumnName("profile_picture")
                 .HasColumnType("VARCHAR(255)");
+
+            builder.Property(u => u.IsApproved)
+            .HasColumnName("is_approved")
+            .HasDefaultValue(true);
 
             builder.Property(u => u.CreatedAt)
                 .HasColumnName("created_at")
@@ -42,5 +46,5 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(u => u.LockoutEnabled).HasColumnName("lockout_enabled");
             builder.Property(u => u.AccessFailedCount).HasColumnName("access_failed_count");
         }
-    }
+     }
 }

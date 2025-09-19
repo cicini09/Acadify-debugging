@@ -41,9 +41,6 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnType("SMALLINT")
                 .IsRequired();
 
-            builder.Property(c => c.CreatedBy)
-                .HasColumnName("created_by");
-
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
                 .HasColumnType("TIMESTAMP")
@@ -53,11 +50,6 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.HasOne(c => c.Teacher)
                 .WithMany(u => u.CoursesTeaching)
                 .HasForeignKey(c => c.TeacherId)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            builder.HasOne(c => c.Creator)
-                .WithMany(u => u.CreatedCourses)
-                .HasForeignKey(c => c.CreatedBy)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
