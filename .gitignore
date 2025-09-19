@@ -42,6 +42,9 @@ artifacts/
 # Cursor Editor
 .cursor/
 
+# GitHub
+.github/
+
 # JetBrains Rider
 .idea/
 *.sln.iml
