@@ -39,16 +39,18 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(c => c.Schedule)
                 .HasColumnName("schedule")
-                .HasColumnType("VARCHAR(100)");
+                .HasColumnType("VARCHAR(100)")
+                .IsRequired();
 
             builder.Property(c => c.Room)
                 .HasColumnName("room")
-                .HasColumnType("VARCHAR(50)");
+                .HasColumnType("VARCHAR(50)")
+                .IsRequired();
 
             builder.Property(c => c.JoinCode)
-                    .HasColumnName("join_code")
-                    .HasColumnType("VARCHAR(50)")
-                    .IsRequired();
+                .HasColumnName("join_code")
+                .HasColumnType("VARCHAR(50)")
+                .IsRequired();
 
             builder.Property(c => c.JoinCodeGeneratedAt)
                 .HasColumnName("join_code_generated_at")
@@ -56,7 +58,8 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasDefaultValueSql("NOW()");
 
             builder.Property(c => c.IsActive)
-                .HasColumnName("is_active");
+                .HasColumnName("is_active")
+                .HasDefaultValue(true);
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")

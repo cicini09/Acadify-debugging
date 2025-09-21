@@ -9,7 +9,7 @@
         public short Units { get; set; }        
         public short YearLevel { get; set; }
         public short AvailableSemester { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation properties

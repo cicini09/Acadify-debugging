@@ -10,8 +10,8 @@ namespace ASI.Basecode.Data.Models
         public int TeacherId { get; set; }  
         public short Semester { get; set; }
         public short YearLevel { get; set; }
-        public string? Schedule { get; set; }
-        public string? Room { get; set; }
+        public string Schedule { get; set; } = null!;
+        public string Room { get; set; } = null!;
         public string JoinCode { get; set; } = null!;
         public DateTime JoinCodeGeneratedAt { get; set; } = DateTime.UtcNow;
         public bool IsActive { get; set; } = true;

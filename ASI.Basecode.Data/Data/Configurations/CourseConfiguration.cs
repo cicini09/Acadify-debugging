@@ -19,7 +19,7 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnName("id")
                 .UseIdentityColumn();
 
-            builder.Property(c => c.CourseCode) 
+            builder.Property(c => c.CourseCode)
                 .HasColumnName("course_code")
                 .HasColumnType("VARCHAR(20)")
                 .IsRequired();
@@ -34,7 +34,7 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnType("TEXT");
 
             builder.Property(c => c.Units)
-                .HasColumnName("units")
+                .HasColumnName("units") 
                 .HasColumnType("SMALLINT")
                 .IsRequired();
 
@@ -51,6 +51,7 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(c => c.IsActive)
                 .HasColumnName("is_active")
                 .HasColumnType("BOOLEAN")
+                .HasDefaultValue(true)
                 .IsRequired();
 
             builder.Property(c => c.CreatedAt)
