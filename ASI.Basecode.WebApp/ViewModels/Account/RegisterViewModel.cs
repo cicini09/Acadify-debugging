@@ -7,7 +7,7 @@ public class RegisterViewModel
     [Required(ErrorMessage = "Name is required")]
     [StringLength(100, ErrorMessage = "Name cannot exceed 100 characters")]
     public string Name { get; set; } = null!;
-    
+
 
     [Required(ErrorMessage = "Email address is required")]
     [StringLength(255, ErrorMessage = "Email address cannot exceed 255 characters")]
@@ -25,7 +25,7 @@ public class RegisterViewModel
     [DataType(DataType.Password)]
     [Compare("Password", ErrorMessage = "Passwords do not match")]
     public string ConfirmPassword { get; set; } = null!;
-    
+
 
     [Required(ErrorMessage = "Role is required")]
     public string Role { get; set; } = null!;

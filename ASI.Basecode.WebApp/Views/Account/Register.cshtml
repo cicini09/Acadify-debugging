@@ -1,0 +1,314 @@
+@model Student_Performance_Tracker.ViewModels.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+    string returnUrl = ViewData["returnUrl"] as string ?? "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACADIFY - Create Account</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .custom-blue {
+            background-color: #3A4D75;
+        }
+
+        .custom-blue-border {
+            border-color: #3A4D75;
+        }
+
+        .custom-blue-text {
+            color: #3A4D75;
+        }
+
+        .custom-blue-focus:focus {
+            border-color: #3A4D75;
+            box-shadow: 0 0 0 3px rgba(58, 77, 117, 0.1);
+        }
+
+        .custom-blue-hover:hover {
+            background-color: #2d3a5a;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <div class="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative">
+
+        <!-- Left Panel -->
+        <div class="bg-gray-100 flex items-center justify-center p-8">
+            <div class="max-w-lg text-center lg:text-left">
+                <h1 class="text-6xl font-bold text-gray-800 mb-4 tracking-tight">ACADIFY</h1>
+                <p class="text-xl text-gray-600 mb-6 font-medium">Student Performance Tracker</p>
+                <div class="space-y-4 text-gray-600">
+                    <p class="text-base leading-relaxed">
+                        Join our secure platform for tracking academic progress and managing student performance.
+                    </p>
+                    <p class="text-base leading-relaxed">
+                        Create your account to start managing grades and monitoring student performance effectively, anytime, anywhere.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="custom-blue relative flex items-center justify-center p-6">
+            <div class="w-full max-w-md relative z-10">
+                <div class="bg-white rounded-2xl p-6 shadow-2xl border-0">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Create Account</h2>
+                        <p class="text-gray-500">Join ACADIFY today</p>
+                    </div>
+
+                    @using (Html.BeginForm("Register", "Account", new { returnUrl = returnUrl }, FormMethod.Post, null, new { id = "registerForm" }))
+                    {
+                    @Html.AntiForgeryToken()
+
+                    <!-- Validation Summary -->
+                    <div class="hidden bg-red-50 border border-red-200 text-red-600 rounded-lg p-3 mb-4 text-sm"
+                         id="validationSummary">
+                        @if (!ViewData.ModelState.IsValid)
+                            {
+                        <ul class="list-disc pl-5 space-y-1">
+                            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                    {
+                            <li>@modelError.ErrorMessage</li>
+                                    }
+                        </ul>
+                            }
+                    </div>
+
+ <!-- Hidden Name field for model binding -->
+                    @Html.HiddenFor(m => m.Name)
+
+ <!-- First Name and Last Name (UI only) -->
+                    <div class="grid grid-cols-2 gap-3 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                </div>
+                                <input type="text" id="firstName" name="firstName" placeholder="John"
+                                       class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
+                            </div>
+                            <span class="text-xs text-red-600 mt-1 block" id="firstNameError" style="display: none;">First name is required</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                    </svg>
+                                </div>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe"
+                                       class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
+                            </div>
+                            <span class="text-xs text-red-600 mt-1 block" id="lastNameError" style="display: none;">Last name is required</span>
+                        </div>
+                    </div>
+
+ <!-- Email Address -->
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.Email, "Email Address", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                                </svg>
+                            </div>
+                            @Html.TextBoxFor(m => m.Email, new {
+                                type = "email",
+                                placeholder = "john.doe@school.edu",
+                                @class = "w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm"
+                            })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-xs text-red-600 mt-1 block" })
+                    </div>
+
+ <!-- Role -->
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.Role, "Role", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            @Html.DropDownListFor(m => m.Role, new SelectList(new[]
+                            {
+                                new { Value = "Student", Text = "Student" },
+                                new { Value = "Teacher", Text = "Teacher" }
+                            }, "Value", "Text"), "Select your role", new {
+                                @class = "w-full pl-9 pr-8 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 appearance-none text-sm"
+                            })
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-xs text-red-600 mt-1 block" })
+                    </div>
+
+ <!-- Password -->
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.Password, "Password", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <button type="button" class="text-gray-400 hover:text-gray-600" onclick="togglePassword('passwordField', 'eyeIcon1')">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="eyeIcon1">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            @Html.PasswordFor(m => m.Password, new {
+                                placeholder = "Create a password",
+                                @class = "w-full pl-9 pr-9 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm",
+                                id = "passwordField"
+                            })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-xs text-red-600 mt-1 block" })
+                    </div>
+
+ <!-- Confirm Password -->
+                    <div class="mb-5">
+                        @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <button type="button" class="text-gray-400 hover:text-gray-600" onclick="togglePassword('confirmPasswordField', 'eyeIcon2')">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="eyeIcon2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new {
+                                placeholder = "Confirm your password",
+                                @class = "w-full pl-9 pr-9 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm",
+                                id = "confirmPasswordField"
+                            })
+                        </div>
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-xs text-red-600 mt-1 block" })
+                    </div>
+
+ <!-- Create Account Button -->
+                    <button type="submit" id="registerButton"
+                            class="w-full py-2.5 custom-blue text-white rounded-lg font-semibold custom-blue-hover transition duration-200 disabled:bg-gray-400 text-sm">
+                        Create Account
+                    </button>
+                    }
+
+                    <!-- Sign In Link -->
+                    <div class="text-center mt-4 text-sm text-gray-600">
+                        Already have an account?
+                        @Html.ActionLink("Sign In", "Login", "Account", null, new { @class = "custom-blue-text font-semibold hover:underline ml-1" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Prevent double submit and provide quick feedback
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('registerForm');
+            var btn = document.getElementById('registerButton');
+            if (form && btn) {
+                form.addEventListener('submit', function (e) {
+                    // Validate first name and last name
+                    var firstName = document.getElementById('firstName').value.trim();
+                    var lastName = document.getElementById('lastName').value.trim();
+                    var firstNameError = document.getElementById('firstNameError');
+                    var lastNameError = document.getElementById('lastNameError');
+                    var hasErrors = false;
+
+                    // Reset error states
+                    firstNameError.style.display = 'none';
+                    lastNameError.style.display = 'none';
+                    document.getElementById('firstName').classList.remove('border-red-500');
+                    document.getElementById('lastName').classList.remove('border-red-500');
+
+                    // Validate first name
+                    if (!firstName) {
+                        firstNameError.style.display = 'block';
+                        document.getElementById('firstName').classList.add('border-red-500');
+                        hasErrors = true;
+                    }
+
+                    // Validate last name
+                    if (!lastName) {
+                        lastNameError.style.display = 'block';
+                        document.getElementById('lastName').classList.add('border-red-500');
+                        hasErrors = true;
+                    }
+
+                    // If there are errors, prevent form submission
+                    if (hasErrors) {
+                        e.preventDefault();
+                        return false;
+                    }
+
+                    // Concatenate first and last name before submission
+                    var fullName = (firstName + ' ' + lastName).trim();
+
+                    // Set the hidden Name field
+                    document.querySelector('input[name="Name"]').value = fullName;
+
+                    btn.disabled = true;
+                    btn.textContent = 'Creating Account...';
+                });
+            }
+            // Autofocus first name field
+            var firstName = document.getElementById('firstName');
+            if (firstName) {
+                firstName.focus();
+            }
+        });
+
+        // Toggle password visibility
+        function togglePassword(fieldId, iconId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById(iconId);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.innerHTML = `
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"></path>
+                        `;
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.innerHTML = `
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        `;
+            }
+        }
+    </script>
+</body>
+</html>
