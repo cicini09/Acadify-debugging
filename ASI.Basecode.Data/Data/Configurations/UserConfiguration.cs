@@ -43,12 +43,14 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(u => u.SecurityStamp).HasColumnName("security_stamp");
             builder.Property(u => u.ConcurrencyStamp).HasColumnName("concurrency_stamp");
             builder.Property(u => u.EmailConfirmed).HasColumnName("email_confirmed");
-            builder.Property(u => u.PhoneNumber).HasColumnName("phone_number");
-            builder.Property(u => u.PhoneNumberConfirmed).HasColumnName("phone_number_confirmed");
-            builder.Property(u => u.TwoFactorEnabled).HasColumnName("two_factor_enabled");
-            builder.Property(u => u.LockoutEnd).HasColumnName("lockout_end");
-            builder.Property(u => u.LockoutEnabled).HasColumnName("lockout_enabled");
-            builder.Property(u => u.AccessFailedCount).HasColumnName("access_failed_count");
+
+            // Ignore unused Identity columns to clean up the database schema
+            builder.Ignore(u => u.PhoneNumber);
+            builder.Ignore(u => u.PhoneNumberConfirmed);
+            builder.Ignore(u => u.TwoFactorEnabled);
+            builder.Ignore(u => u.LockoutEnd);
+            builder.Ignore(u => u.LockoutEnabled);
+            builder.Ignore(u => u.AccessFailedCount);
         }
      }
 }
