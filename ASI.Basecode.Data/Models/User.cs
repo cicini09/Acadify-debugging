@@ -8,11 +8,11 @@ namespace ASI.Basecode.Data.Models
     {
         public string Name { get; set; } = null!;
         public string? ProfilePicture { get; set; }
-        public bool IsApproved { get; set; } = true; 
+        public bool IsApproved { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
-        public virtual ICollection<Course> CoursesTeaching { get; set; } = new List<Course>();
+        public virtual ICollection<Class> ClassesTeaching { get; set; } = new List<Class>();
         public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     }
 }

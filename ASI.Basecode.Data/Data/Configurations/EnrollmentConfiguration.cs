@@ -12,7 +12,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.HasKey(e => e.Id);
 
-            builder.HasIndex(e => new { e.StudentId, e.CourseId })
+            builder.HasIndex(e => new { e.StudentId, e.ClassId })
                 .IsUnique();
 
             builder.Property(e => e.Id)
@@ -23,8 +23,8 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnName("student_id")
                 .IsRequired();
 
-            builder.Property(e => e.CourseId)
-                .HasColumnName("course_id")
+            builder.Property(e => e.ClassId)
+                .HasColumnName("class_id")
                 .IsRequired();
 
             builder.Property(e => e.EnrolledAt)
@@ -39,9 +39,9 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasForeignKey(e => e.StudentId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(e => e.Course)
+            builder.HasOne(e => e.Class)
                 .WithMany(c => c.Enrollments)
-                .HasForeignKey(e => e.CourseId)
+                .HasForeignKey(e => e.ClassId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

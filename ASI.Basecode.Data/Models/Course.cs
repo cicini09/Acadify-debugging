@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ASI.Basecode.Data.Models
+﻿namespace ASI.Basecode.Data.Models
 {
     public class Course
     {
         public int Id { get; set; }
+        public string CourseCode { get; set; } = null!;
         public string CourseName { get; set; } = null!;
         public string? Description { get; set; }
-        public int? TeacherId { get; set; }
-        public string JoinCode { get; set; } = null!;
-        public short Units { get; set; }
-        public int? CreatedBy { get; set; }
+        public short Units { get; set; }        
+        public short YearLevel { get; set; }
+        public short AvailableSemester { get; set; }
+        public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
-        public virtual User? Teacher { get; set; }
-        public virtual User? Creator { get; set; }
-        public virtual ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+        public virtual ICollection<Class> Classes { get; set; } = new List<Class>();
     }
 }

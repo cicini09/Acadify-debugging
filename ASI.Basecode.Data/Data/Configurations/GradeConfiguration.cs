@@ -11,6 +11,10 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.ToTable("grades");
 
             builder.HasKey(g => g.Id);
+
+            builder.HasIndex(g => g.EnrollmentId)
+                .IsUnique();
+            
             builder.Property(g => g.Id)
                 .HasColumnName("id")
                 .UseIdentityColumn();
@@ -19,16 +23,13 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnName("enrollment_id")
                 .IsRequired();
 
-            builder.HasIndex(g => g.EnrollmentId)
-                .IsUnique();
-
             builder.Property(g => g.MidtermGrade)
                 .HasColumnName("midterm_grade")
-                .HasColumnType("DECIMAL(5,2)");
+                .HasColumnType("DECIMAL(5,1)");
 
             builder.Property(g => g.FinalGrade)
                 .HasColumnName("final_grade")
-                .HasColumnType("DECIMAL(5,2)");
+                .HasColumnType("DECIMAL(5,1)");
 
             builder.Property(g => g.Remarks)
                 .HasColumnName("remarks")
@@ -41,8 +42,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(g => g.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("TIMESTAMP")
-                .HasDefaultValueSql("NOW()");
+                .HasColumnType("TIMESTAMP");
 
             // One-to-one with Enrollment
             builder.HasOne(g => g.Enrollment)

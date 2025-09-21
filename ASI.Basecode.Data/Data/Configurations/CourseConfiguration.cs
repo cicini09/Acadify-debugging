@@ -12,12 +12,17 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.HasKey(c => c.Id);
 
-            builder.HasIndex(c => c.JoinCode)
+            builder.HasIndex(c => c.CourseCode)
                 .IsUnique();
 
             builder.Property(c => c.Id)
                 .HasColumnName("id")
                 .UseIdentityColumn();
+
+            builder.Property(c => c.CourseCode) 
+                .HasColumnName("course_code")
+                .HasColumnType("VARCHAR(20)")
+                .IsRequired();
 
             builder.Property(c => c.CourseName)
                 .HasColumnName("course_name")
@@ -28,29 +33,30 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnName("description")
                 .HasColumnType("TEXT");
 
-            builder.Property(c => c.TeacherId)
-                .HasColumnName("teacher_id");
-
-            builder.Property(c => c.JoinCode)
-                .HasColumnName("join_code")
-                .HasColumnType("VARCHAR(10)")
-                .IsRequired();
-
             builder.Property(c => c.Units)
                 .HasColumnName("units")
                 .HasColumnType("SMALLINT")
+                .IsRequired();
+
+            builder.Property(c => c.YearLevel)
+                .HasColumnName("year_level")
+                .HasColumnType("SMALLINT")
+                .IsRequired();
+
+            builder.Property(c => c.AvailableSemester)
+                .HasColumnName("available_semester")
+                .HasColumnType("SMALLINT")
+                .IsRequired();
+
+            builder.Property(c => c.IsActive)
+                .HasColumnName("is_active")
+                .HasColumnType("BOOLEAN")
                 .IsRequired();
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
                 .HasColumnType("TIMESTAMP")
                 .HasDefaultValueSql("NOW()");
-
-            // Relationships
-            builder.HasOne(c => c.Teacher)
-                .WithMany(u => u.CoursesTeaching)
-                .HasForeignKey(c => c.TeacherId)
-                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

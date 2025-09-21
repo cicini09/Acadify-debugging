@@ -10,7 +10,7 @@ namespace ASI.Basecode.Data.Models
         public decimal? FinalGrade { get; set; }
         public string? Remarks { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation property
         public virtual Enrollment Enrollment { get; set; } = null!;

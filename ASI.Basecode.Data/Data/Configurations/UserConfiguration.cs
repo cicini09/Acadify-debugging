@@ -10,9 +10,14 @@ namespace ASI.Basecode.Data.Data.Configurations
         {
             builder.ToTable("users");
 
-            builder.Property(u => u.Id).HasColumnName("id");
-            builder.Property(u => u.Email).HasColumnName("email");
-            builder.Property(u => u.PasswordHash).HasColumnName("password_hash");
+            builder.Property(u => u.Id)
+                .HasColumnName("id");
+
+            builder.Property(u => u.Email)
+                .HasColumnName("email");
+
+            builder.Property(u => u.PasswordHash)
+                .HasColumnName("password_hash");
 
             builder.Property(u => u.Name)
                 .HasColumnName("name")
@@ -24,8 +29,7 @@ namespace ASI.Basecode.Data.Data.Configurations
                 .HasColumnType("VARCHAR(255)");
 
             builder.Property(u => u.IsApproved)
-            .HasColumnName("is_approved")
-            .HasDefaultValue(true);
+                .HasColumnName("is_approved");
 
             builder.Property(u => u.CreatedAt)
                 .HasColumnName("created_at")
