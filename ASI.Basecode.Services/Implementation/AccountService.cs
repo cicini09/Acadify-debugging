@@ -25,7 +25,8 @@ public class AccountService : IAccountService
         var user = new User
         {
             UserName = request.Email,
-            Name = request.Name,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
             Email = request.Email
         };
 
@@ -90,7 +91,7 @@ public class AccountService : IAccountService
             if (user != null)
             {
                 var token = await _userRepository.GeneratePasswordResetTokenAsync(user);
-                await _emailService.SendPasswordResetEmailAsync(user.Email!, user.Name, token);
+                await _emailService.SendPasswordResetEmailAsync(user.Email!, $"{user.FirstName} {user.LastName}", token);
             }
 
             return ForgotPasswordResult.Success();

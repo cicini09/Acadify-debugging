@@ -63,7 +63,8 @@ public class AccountController : Controller
 
         var result = await _accountService.RegisterAsync(new RegisterRequest
         {
-            Name = model.Name,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
             Email = model.Email,
             Password = model.Password,
             Role = model.Role

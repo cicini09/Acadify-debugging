@@ -19,10 +19,15 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(u => u.PasswordHash)
                 .HasColumnName("password_hash");
 
-            builder.Property(u => u.Name)
-                .HasColumnName("name")
+            builder.Property(u => u.FirstName)
+                .HasColumnName("first_name")
                 .HasColumnType("VARCHAR(100)")
-                .IsRequired();  
+                .IsRequired();
+            
+            builder.Property(u => u.LastName)
+                .HasColumnName("last_name")
+                .HasColumnType("VARCHAR(100)")
+                .IsRequired();
 
             builder.Property(u => u.ProfilePicture)
                 .HasColumnName("profile_picture")

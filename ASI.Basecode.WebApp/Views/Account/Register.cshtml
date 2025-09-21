@@ -78,51 +78,55 @@
                     <div class="hidden bg-red-50 border border-red-200 text-red-600 rounded-lg p-3 mb-4 text-sm"
                          id="validationSummary">
                         @if (!ViewData.ModelState.IsValid)
-                            {
-                        <ul class="list-disc pl-5 space-y-1">
-                            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                    {
-                            <li>@modelError.ErrorMessage</li>
-                                    }
-                        </ul>
-                            }
+                        {
+                            <ul class="list-disc pl-5 space-y-1">
+                                @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>@modelError.ErrorMessage</li>
+                                }
+                            </ul>
+                        }
                     </div>
 
- <!-- Hidden Name field for model binding -->
-                    @Html.HiddenFor(m => m.Name)
-
- <!-- First Name and Last Name (UI only) -->
+                     <!-- First Name and Last Name (UI only) -->
                     <div class="grid grid-cols-2 gap-3 mb-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+
+                        <!-- First Name -->
+                        <div class="mb-4">
+                            <label asp-for="FirstName" class="block text-sm font-medium text-gray-700 mb-1"></label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7
+                                            7h14a7 7 0 00-7-7z">
+                                        </path>
                                     </svg>
                                 </div>
-                                <input type="text" id="firstName" name="firstName" placeholder="John"
-                                       class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
+                                <input asp-for="FirstName" placeholder="John" class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2
+                                            focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
                             </div>
-                            <span class="text-xs text-red-600 mt-1 block" id="firstNameError" style="display: none;">First name is required</span>
+                            <span asp-validation-for="FirstName" class="text-xs text-red-600 mt-1 block"></span>
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <!-- Last Name -->
+                        <div class="mb-4">
+                            <label asp-for="FirstName" class="block text-sm font-medium text-gray-700 mb-1"></label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7
+                                            7h14a7 7 0 00-7-7z"></path>
                                     </svg>
                                 </div>
-                                <input type="text" id="lastName" name="lastName" placeholder="Doe"
-                                       class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
+                                <input asp-for="FirstName" placeholder="John" class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2
+                                            focus:ring-blue-500 focus:border-blue-500 bg-gray-50 custom-blue-focus transition duration-200 text-sm" />
                             </div>
-                            <span class="text-xs text-red-600 mt-1 block" id="lastNameError" style="display: none;">Last name is required</span>
+                            <span asp-validation-for="FirstName" class="text-xs text-red-600 mt-1 block"></span>
                         </div>
                     </div>
-
- <!-- Email Address -->
+    
+                    
+                     <!-- Email Address -->
                     <div class="mb-4">
                         @Html.LabelFor(m => m.Email, "Email Address", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
                         <div class="relative">
@@ -140,7 +144,7 @@
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-xs text-red-600 mt-1 block" })
                     </div>
 
- <!-- Role -->
+                    <!-- Role -->
                     <div class="mb-4">
                         @Html.LabelFor(m => m.Role, "Role", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
                         <div class="relative">
@@ -165,7 +169,7 @@
                         @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-xs text-red-600 mt-1 block" })
                     </div>
 
- <!-- Password -->
+                     <!-- Password -->
                     <div class="mb-4">
                         @Html.LabelFor(m => m.Password, "Password", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
                         <div class="relative">
@@ -191,7 +195,7 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-xs text-red-600 mt-1 block" })
                     </div>
 
- <!-- Confirm Password -->
+                     <!-- Confirm Password -->
                     <div class="mb-5">
                         @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
                         <div class="relative">
@@ -217,7 +221,7 @@
                         @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-xs text-red-600 mt-1 block" })
                     </div>
 
- <!-- Create Account Button -->
+                     <!-- Create Account Button -->
                     <button type="submit" id="registerButton"
                             class="w-full py-2.5 custom-blue text-white rounded-lg font-semibold custom-blue-hover transition duration-200 disabled:bg-gray-400 text-sm">
                         Create Account
@@ -273,12 +277,6 @@
                         e.preventDefault();
                         return false;
                     }
-
-                    // Concatenate first and last name before submission
-                    var fullName = (firstName + ' ' + lastName).trim();
-
-                    // Set the hidden Name field
-                    document.querySelector('input[name="Name"]').value = fullName;
 
                     btn.disabled = true;
                     btn.textContent = 'Creating Account...';
