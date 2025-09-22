@@ -47,7 +47,7 @@ namespace ASI.Basecode.Data.Data.Configurations
             builder.Property(u => u.NormalizedEmail).HasColumnName("normalized_email");
             builder.Property(u => u.SecurityStamp).HasColumnName("security_stamp");
             builder.Property(u => u.ConcurrencyStamp).HasColumnName("concurrency_stamp");
-            builder.Property(u => u.EmailConfirmed).HasColumnName("email_confirmed");
+            builder.Property(u => u.EmailConfirmed).HasColumnName("email_confirmed");   
 
             // Ignore unused Identity columns to clean up the database schema
             builder.Ignore(u => u.PhoneNumber);
