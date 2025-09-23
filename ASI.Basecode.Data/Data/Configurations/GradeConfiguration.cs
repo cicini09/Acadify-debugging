@@ -37,12 +37,12 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(g => g.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
 
             builder.Property(g => g.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("TIMESTAMP");
+                .HasColumnType("TIMESTAMPTZ");
 
             // One-to-one with Enrollment
             builder.HasOne(g => g.Enrollment)

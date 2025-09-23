@@ -38,7 +38,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(u => u.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
 
             // Keep Identity columns mapped to avoid EF warnings; do not ignore them

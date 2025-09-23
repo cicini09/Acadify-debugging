@@ -49,8 +49,6 @@ public class AccountController : Controller
     }
 
 
-
-
     // POST: /Account/Register
     [HttpPost]
     [ValidateAntiForgeryToken]

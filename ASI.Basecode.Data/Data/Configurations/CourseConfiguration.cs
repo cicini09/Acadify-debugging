@@ -56,7 +56,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
         }
     }

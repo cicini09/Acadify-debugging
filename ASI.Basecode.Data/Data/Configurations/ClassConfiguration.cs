@@ -54,7 +54,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(c => c.JoinCodeGeneratedAt)
                 .HasColumnName("join_code_generated_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
 
             builder.Property(c => c.IsActive)
@@ -63,7 +63,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
 
             // Relationships

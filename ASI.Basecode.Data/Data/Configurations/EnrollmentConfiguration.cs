@@ -29,7 +29,7 @@ namespace ASI.Basecode.Data.Data.Configurations
 
             builder.Property(e => e.EnrolledAt)
                 .HasColumnName("enrolled_at")
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMPTZ")
                 .HasDefaultValueSql("NOW()");
             
 
