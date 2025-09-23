@@ -140,7 +140,7 @@ public class AccountService : IAccountService
         {
             "Admin" => "/Admin",
             "Teacher" => "/Teacher", 
-            "Student" => "/Student",
+            "Student" => "/Account/Register",
             _ => "/Register"
         };
     }

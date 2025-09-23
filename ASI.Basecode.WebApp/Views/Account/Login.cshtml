@@ -125,6 +125,8 @@
                             <a asp-controller="Account" asp-action="ForgotPassword" class="text-sm custom-blue-text hover:underline">Forgot password?</a>
                         </div>
 
+                        <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm mb-4 text-center"></div>
+
                         <!-- Sign In Button -->
                         <button type="submit" id="loginButton"
                                 class="w-full py-3 custom-blue text-white rounded-lg font-semibold custom-blue-hover transition duration-200 disabled:bg-gray-400">

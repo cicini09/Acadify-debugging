@@ -3,7 +3,7 @@ namespace ASI.Basecode.Resources.Messages;
 public static class AccountMessages
 {
     // Login Messages
-    public const string InvalidLoginAttempt = "Invalid login attempt.";
+    public const string InvalidLoginAttempt = "Invalid login attempt. Please try again.";
     public const string AccountLockedOut = "This account has been locked due to multiple failed login attempts. Please try again in 15 minutes.";
     
     // Registration Messages

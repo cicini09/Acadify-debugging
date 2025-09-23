@@ -20,12 +20,12 @@ namespace ASI.Basecode.Data.Data
             base.OnModelCreating(modelBuilder);
 
             // Remove unused Identity tables
-            modelBuilder.Ignore<IdentityUserClaim<int>>();
             modelBuilder.Ignore<IdentityUserLogin<int>>();
-            modelBuilder.Ignore<IdentityRoleClaim<int>>();
 
             // Override Identity table names for consistency
+            modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("user_claims");
             modelBuilder.Entity<IdentityRole<int>>().ToTable("roles");
+            modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("role_claims");
             modelBuilder.Entity<IdentityUserRole<int>>().ToTable("user_roles");
             modelBuilder.Entity<IdentityUserToken<int>>().ToTable("user_tokens");
 
