@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ACADIFY</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r shadow-sm">
+            <a asp-controller="Home" asp-action="Index" class="p-4 flex items-center space-x-2 hover:text-blue-600">
+                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">A</div>
+                <span class="text-lg font-bold">ACADIFY</span>
+            </a>
+            <nav class="mt-6 space-y-1">
+                <a asp-controller="Dashboard" asp-action="Index"
+                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+                    📊 <span class="ml-3">Dashboard</span>
+                </a>
+                <a asp-controller="AccountManagement" asp-action="Index"
+                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+                    👥 <span class="ml-3">Manage Accounts</span>
+                </a>
+                <a asp-controller="Classes" asp-action="Index"
+                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+                    📚 <span class="ml-3">Manage Classes</span>
+                </a>
+                <a asp-controller="Reports" asp-action="Index"
+                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">
+                    📑 <span class="ml-3">Reports</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-white border-b px-6 h-16 flex items-center justify-between">
+                <h1 class="text-lg font-semibold">@ViewData["Title"]</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <div class="text-sm font-medium text-gray-900">Dr. Dave Villan</div>
+                        <div class="text-xs text-gray-500">System Administrator</div>
+                    </div>
+                    <form asp-controller="Account" asp-action="login" method="post" class="inline">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </header>
+
+            <main class="flex-1 p-6">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+</body>
+</html>
