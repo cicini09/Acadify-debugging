@@ -22,12 +22,19 @@ public class AccountService : IAccountService
 
     public async Task<AuthResult> RegisterAsync(RegisterRequest request)
     {
+        var existingUser = await _userRepository.FindByEmailAsync(request.Email);
+        if (existingUser != null)
+        {
+            return AuthResult.Failure(new[] { "Email is already in use." });
+        }
+
         var user = new User
         {
             UserName = request.Email,
             FirstName = request.FirstName,
             LastName = request.LastName,
-            Email = request.Email
+            Email = request.Email,
+            IsApproved = request.Role == "Student" // Set IsApproved to true if the role is Student 
         };
 
         var (succeeded, errors) = await _userRepository.CreateUserAsync(user, request.Password);
@@ -134,7 +141,7 @@ public class AccountService : IAccountService
             "Admin" => "/Admin",
             "Teacher" => "/Teacher", 
             "Student" => "/Student",
-            _ => "/Home"
+            _ => "/Register"
         };
     }
 }

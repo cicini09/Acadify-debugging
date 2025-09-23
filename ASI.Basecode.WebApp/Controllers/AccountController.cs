@@ -76,7 +76,14 @@ public class AccountController : Controller
         // Add errors to ModelState
         foreach (var error in result.Errors)
         {
-            ModelState.AddModelError("", error);
+            if (error.Contains("Email"))
+            {
+                ModelState.AddModelError(nameof(model.Email), error);
+            }
+            else
+            {
+                ModelState.AddModelError("", error);
+            }
         }
 
         return View(model);
@@ -114,7 +121,7 @@ public class AccountController : Controller
             ModelState.AddModelError("", AccountMessages.AccountLockedOut);
             return ViewWithReturnUrl(model, returnUrl);
         }
-
+        
         ModelState.AddModelError("", result.ErrorMessage ?? AccountMessages.InvalidLoginAttempt);
         return ViewWithReturnUrl(model, returnUrl);
     }
