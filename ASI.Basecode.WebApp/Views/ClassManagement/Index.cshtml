@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ASI.Basecode.Data.Models.Class>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Class Management";
+}
+
+<div class="container">
+    <h2>Class Management</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert @(TempData["MessageType"]?.ToString() == "success" ? "alert-success" : "alert-danger")">
+            @TempData["Message"]
+        </div>
+    }
+
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" class="btn btn-primary mb-3">Add New Class</a>
+    }
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Teacher</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>Schedule</th>
+                <th>Room</th>
+                <th>Join Code</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@(c.Course?.CourseCode ?? "—") - @(c.Course?.CourseName ?? "")</td>
+                    <td>@(c.Teacher != null ? $"{c.Teacher.FirstName} {c.Teacher.LastName}" : "—")</td>
+                    <td>@c.Semester</td>
+                    <td>@c.YearLevel</td>
+                    <td>@c.Schedule</td>
+                    <td>@c.Room</td>
+                    <td>@c.JoinCode</td>
+                    <td>@(c.IsActive ? "Yes" : "No")</td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@c.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@c.Id" method="post" style="display:inline" onsubmit="return confirm('Delete this class?');">
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
