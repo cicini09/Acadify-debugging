@@ -1,67 +1,96 @@
-﻿@model Student_Performance_Tracker.ViewModels.ClassManagement.EditClassViewModel
+﻿@model ASI.Basecode.Data.Models.Class
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Edit Class";
 }
+<h1>Edit Class</h1>
 
-<div class="container">
-    <h2>Edit Class</h2>
+<form method="post" action="@Url.Action("Edit")">
+    @Html.AntiForgeryToken()
 
-    <form asp-action="Edit" method="post" class="mt-3">
-        <input asp-for="Id" type="hidden" />
+    <div style="margin-bottom:1rem;">
+        <label>EDP Code</label><br />
+        <input asp-for="Id" style="width:120px;" />
+        <button type="button">🔍 Search</button>
+    </div>
 
-        <div class="form-group">
-            <label asp-for="CourseId"></label>
-            <select asp-for="CourseId" class="form-control" asp-items="@(new SelectList(Model.Courses, "Id", "CourseName"))"></select>
-            <span asp-validation-for="CourseId" class="text-danger"></span>
+    <p>Course Code<br />
+        <input asp-for="CourseId" />
+    </p>
+
+    <p>Description<br />
+        <input asp-for="Description" />
+    </p>
+
+    <p>Units<br />
+        <input asp-for="Units" />
+    </p>
+
+    <p>Schedule</p>
+
+    <div style="margin-left:1rem;">
+        <div>Day</div>
+        <div>
+            <label><input type="checkbox" name="Days" value="Mon" /> Monday</label><br />
+            <label><input type="checkbox" name="Days" value="Tue" /> Tuesday</label><br />
+            <label><input type="checkbox" name="Days" value="Wed" /> Wednesday</label><br />
+            <label><input type="checkbox" name="Days" value="Thu" /> Thursday</label><br />
+            <label><input type="checkbox" name="Days" value="Fri" /> Friday</label><br />
+            <label><input type="checkbox" name="Days" value="Sat" /> Saturday</label>
         </div>
 
-        <div class="form-group">
-            <label asp-for="TeacherId"></label>
-            <select asp-for="TeacherId" class="form-control" asp-items="@(new SelectList(Model.Teachers, "Id", "FirstName"))"></select>
-            <span asp-validation-for="TeacherId" class="text-danger"></span>
+        <div style="margin-top:0.75rem;">Time</div>
+        <div>
+            <input name="StartHour" size="2" maxlength="2" /> :
+            <input name="StartMinute" size="2" maxlength="2" />
+            &nbsp; - &nbsp;
+            <input name="EndHour" size="2" maxlength="2" /> :
+            <input name="EndMinute" size="2" maxlength="2" />
+            &nbsp;
+            <select name="Meridiem">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
         </div>
+    </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label asp-for="Semester"></label>
-                <input asp-for="Semester" class="form-control" />
-                <span asp-validation-for="Semester" class="text-danger"></span>
-            </div>
-            <div class="form-group col-md-3">
-                <label asp-for="YearLevel"></label>
-                <input asp-for="YearLevel" class="form-control" />
-                <span asp-validation-for="YearLevel" class="text-danger"></span>
-            </div>
-        </div>
+    <input type="hidden" asp-for="Schedule" />
 
-        <div class="form-group">
-            <label asp-for="Schedule"></label>
-            <input asp-for="Schedule" class="form-control" />
-            <span asp-validation-for="Schedule" class="text-danger"></span>
-        </div>
+    <p>Teacher<br />
+        <input asp-for="TeacherId" />
+    </p>
 
-        <div class="form-group">
-            <label asp-for="Room"></label>
-            <input asp-for="Room" class="form-control" />
-            <span asp-validation-for="Room" class="text-danger"></span>
-        </div>
+    <p>Year<br />
+        <select asp-for="YearLevel">
+            <option value="">-- Select --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </p>
 
-        <div class="form-group">
-            <label>Join Code (read-only)</label>
-            <div class="form-control-plaintext">@Model.JoinCode</div>
-        </div>
+    <p>Semester<br />
+        <select asp-for="Semester">
+            <option value="">-- Select --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </p>
 
-        <div class="form-group form-check">
-            <input asp-for="IsActive" class="form-check-input" />
-            <label asp-for="IsActive" class="form-check-label"></label>
-        </div>
+    <p>Status<br />
+        <select asp-for="IsActive">
+            <option value="true">Active</option>
+            <option value="false">Inactive</option>
+        </select>
+    </p>
 
-        <button type="submit" class="btn btn-success">Save Changes</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
+    <p>Room<br />
+        <input asp-for="Room" />
+    </p>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <p style="margin-top:1rem;">
+        <button type="submit">Confirm</button>
+        <a href="@Url.Action("Index")">Cancel</a>
+    </p>
+</form>

@@ -49,11 +49,13 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 
 // Services
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddHttpClient<IEmailService, SendGridEmailService>();
 
 // Repositories (Data layer)
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IClassRepository, ClassRepository>();
 
 var app = builder.Build();
 

@@ -1,0 +1,56 @@
+﻿@model ASI.Basecode.Data.Models.Class
+@{
+    ViewData["Title"] = "Delete Class";
+}
+<h1>Delete Class</h1>
+
+<form method="post" action="@Url.Action("Delete")">
+    @Html.AntiForgeryToken()
+
+    <div style="margin-bottom:1rem;">
+        <label>EDP Code</label><br />
+        <input asp-for="Id" style="width:120px;" />
+        <button type="button">🔍 Search</button>
+    </div>
+
+    <p>Course Code<br />
+        <input asp-for="CourseId" readonly />
+    </p>
+
+    <p>Description<br />
+        <input asp-for="Description" readonly />
+    </p>
+
+    <p>Units<br />
+        <input asp-for="Units" readonly />
+    </p>
+
+    <p>Schedule<br />
+        <input asp-for="Schedule" readonly />
+    </p>
+
+    <p>Teacher<br />
+        <input asp-for="TeacherId" readonly />
+    </p>
+
+    <p>Year<br />
+        <input asp-for="YearLevel" readonly />
+    </p>
+
+    <p>Semester<br />
+        <input asp-for="Semester" readonly />
+    </p>
+
+    <p>Status<br />
+        <input value="@(Model.IsActive ? "Active" : "Inactive")" readonly />
+    </p>
+
+    <p>Room<br />
+        <input asp-for="Room" readonly />
+    </p>
+
+    <p style="margin-top:1rem;">
+        <button type="submit">Confirm Delete</button>
+        <a href="@Url.Action("Index")">Cancel</a>
+    </p>
+</form>
